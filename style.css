@@ -1,0 +1,143 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font: inherit;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  --bg-color: #000;
+  --bg-color-secondary: #222;
+  --bg-color-footer: #555;
+  --color: #fff;
+  --color-dim: #888;
+  --padding: 16px;
+  --nav-height: 4rem;
+  --footer-height: 1.5rem;
+}
+
+.footer {
+  height: var(--footer-height);
+  background-color: var(--bg-color-footer);
+}
+
+/* *::-webkit-scrollbar {
+  cursor: default;
+  background: var(--bg-color-secondary);
+  outline: 1px solid red;
+} */
+
+/* *::-webkit-scrollbar-thumb {
+  cursor: default;
+  background: #fff7;
+} */
+
+body {
+  margin: 0;
+
+  background-color: var(--bg-color);
+}
+
+header {
+  height: var(--nav-height);
+  background-color: var(--bg-color-secondary);
+}
+
+main {
+  margin: var(--padding);
+  height: calc(100dvh - var(--nav-height) - var(--padding) * 2);
+  width: calc(100vw - var(--padding) * 2);
+  display: flex;
+  gap: var(--padding);
+}
+
+.editor-tab {
+  width: 70%;
+  min-width: 70ch;
+  height: 100%;
+  font: normal 1.25rem/1.25 monospace;
+}
+
+.editor-container {
+  height: calc(100% - var(--footer-height));
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  background-color: var(--bg-color-secondary);
+}
+
+.editor {
+  padding: var(--padding);
+  padding-left: 0;
+  display: flex;
+  gap: var(--padding);
+
+  &::-moz-selection {
+    background-color: #777;
+  }
+  &::selection {
+    background-color: #777;
+  }
+}
+
+.editor-padding {
+  height: calc(100% - var(--padding) - 1.5rem);
+  cursor: text;
+}
+
+.line-numbers {
+  flex: 0 0 auto;
+  width: 5ch;
+  position: sticky;
+  left: 0;
+
+  background-color: var(--bg-color-secondary);
+  color: var(--color-dim);
+
+  > div {
+    width: fit-content;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+  }
+}
+
+#editor {
+  flex: 1 0 auto;
+  margin: 0;
+  padding: 0;
+  resize: none;
+  border: none;
+  outline: none;
+  background: none;
+
+  color: var(--color);
+}
+
+.editor-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#ln-col-info {
+  color: var(--color);
+  padding-inline: var(--padding);
+  font-size: .75em;
+}
+
+.preview {
+  --bg-color: #fff;
+  width: 30%;
+  min-width: 50ch;
+
+  overflow-y: scroll;
+}
+
+.preview .slide {
+  background-color: var(--bg-color);
+  margin-bottom: var(--padding);
+  padding-inline: var(--padding);
+  overflow-x: auto;
+  min-height: 30dvh;
+}

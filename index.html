@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slides</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <section class="editor-tab">
+        <div class="editor-container">
+          <div class="editor" onclick="editor.focus();">
+            <div class="line-numbers"><div>1</div></div>
+            <textarea id="editor" spellcheck="false" wrap="off"></textarea>
+          </div>
+          <div class="editor-padding"></div>
+        </div>
+        <div class="editor-footer footer">
+          <div id="ln-col-info"></div>
+        </div>
+      </section>
+      <section class="preview"></section>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
