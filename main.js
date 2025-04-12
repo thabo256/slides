@@ -30,7 +30,7 @@ const updateLineNumbers = () => {
 
 /**
  * Corrects the scroll position of the editor when the cursor is at the beginning of a line.
- * 
+ *
  * Also updates the line and column number information.
  */
 const caretChange = () => {
@@ -41,7 +41,7 @@ const caretChange = () => {
 
   const lines = [...editor.value.substring(0, editor.selectionEnd).matchAll(/\n/g)] ?? [];
   const ln = lines.length + 1;
-  const col = editor.value.substring(lines[lines.length - 1].index, editor.selectionEnd).length;
+  const col = editor.value.substring((lines[lines.length - 1]?.index ?? -1) + 1, editor.selectionEnd).length + 1;
 
   lnColInfo.textContent = `Ln ${ln}, Col ${col}`;
 };
