@@ -152,12 +152,11 @@ resizer.addEventListener('touchstart', (event) => {
   event.preventDefault();
   document.addEventListener('touchmove', touchMove, { passive: false });
   document.addEventListener('touchend', mouseUp);
+  document.addEventListener('touchcancel', mouseUp);
 });
 const mouseMove = (event) => {
   event.preventDefault();
   const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
-  console.log(editorPercentage);
-
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
@@ -165,8 +164,9 @@ const mouseUp = (event) => {
   event.preventDefault();
   document.removeEventListener('mousemove', mouseMove);
   document.removeEventListener('mouseup', mouseUp);
-  document.removeEventListener('touchmove', mouseMove);
+  document.removeEventListener('touchmove', touchMove);
   document.removeEventListener('touchend', mouseUp);
+  document.removeEventListener('touchcancel', mouseUp);
   const editorPercentage = document.querySelector('.editor-tab').style.width.replace('%', '') / 100;
   localStorage.setItem('editorPercentage', editorPercentage);
 };
