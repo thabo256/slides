@@ -50,7 +50,8 @@ main {
 }
 
 .editor-tab {
-  min-width: 70ch;
+  width: 70%;
+  min-width: 20ch;
   height: 100%;
   font: normal 1.25rem/1.25 monospace;
 }
@@ -129,7 +130,8 @@ main {
 
 .preview {
   --bg-color: #fff;
-  min-width: 50ch;
+  width: 30%;
+  min-width: 20ch;
 
   overflow-y: scroll;
 }

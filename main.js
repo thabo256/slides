@@ -150,12 +150,14 @@ resizer.addEventListener('mousedown', (event) => {
 });
 resizer.addEventListener('touchstart', (event) => {
   event.preventDefault();
-  document.addEventListener('touchmove', mouseMove);
+  document.addEventListener('touchmove', touchMove, { passive: false });
   document.addEventListener('touchend', mouseUp);
 });
 const mouseMove = (event) => {
   event.preventDefault();
   const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
+  console.log(editorPercentage);
+
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
@@ -165,6 +167,13 @@ const mouseUp = (event) => {
   document.removeEventListener('mouseup', mouseUp);
   document.removeEventListener('touchmove', mouseMove);
   document.removeEventListener('touchend', mouseUp);
-  const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
+  const editorPercentage = document.querySelector('.editor-tab').style.width.replace('%', '') / 100;
   localStorage.setItem('editorPercentage', editorPercentage);
+};
+const touchMove = (event) => {
+  event.preventDefault();
+  if (event.touches.length > 1) return;
+  const editorPercentage = Math.min(Math.max(event.touches[0].clientX / window.innerWidth, 0.1), 0.9);
+  document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
+  preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
