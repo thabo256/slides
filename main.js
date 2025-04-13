@@ -5,6 +5,21 @@ const lineNumbers = document.querySelector('.line-numbers');
 const editor = document.querySelector('#editor');
 const lnColInfo = document.querySelector('#ln-col-info');
 
+const updateSlides = () => {
+  // console.log(text);
+  let parsed = DOMPurify.sanitize(marked.parse(editor.value));
+
+  // remove disabled attribute from checkboxes
+  parsed = parsed.replace(/(?<=<input type="checkbox" )disabled=""(?=(?: checked="")?>)/g, '');
+
+  // create div around each slide
+  parsed = parsed.replace(/<h1.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide title-slide">\n${match}\n</div>`);
+  parsed = parsed.replace(/<h2.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide text-slide">\n${match}\n</div>`);
+
+  console.log(parsed);
+  document.querySelector('.preview').innerHTML = parsed;
+};
+
 /**
  * Updates the line numbers in the editor & the width of the editor.
  */
@@ -26,6 +41,8 @@ const valueChange = () => {
   }
 
   editor.style.width = `${Math.max(...editor.value.split(/\n/g).map((line) => line.length)) + 2}ch`;
+
+  updateSlides();
 };
 
 /**
@@ -119,21 +136,4 @@ document.querySelector('.editor-padding').addEventListener('click', (event) => {
 
 window.onload = () => {
   valueChange();
-
-  fetch('TODO.md')
-    .then((r) => r.text())
-    .then((text) => {
-      // console.log(text);
-      let parsed = DOMPurify.sanitize(marked.parse(text));
-
-      // remove disabled attribute from checkboxes
-      parsed = parsed.replace(/(?<=<input type="checkbox" )disabled=""(?=(?: checked="")?>)/g, '');
-
-      // create div around each slide
-      parsed = parsed.replace(/<h1.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide title-slide">\n${match}\n</div>`);
-      parsed = parsed.replace(/<h2.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide text-slide">\n${match}\n</div>`);
-
-      console.log(parsed);
-      document.querySelector('.preview').innerHTML = parsed;
-    });
 };
