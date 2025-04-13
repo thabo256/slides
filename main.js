@@ -6,9 +6,9 @@ const editor = document.querySelector('#editor');
 const lnColInfo = document.querySelector('#ln-col-info');
 
 /**
- * Updates the line numbers in the editor.
+ * Updates the line numbers in the editor & the width of the editor.
  */
-const updateLineNumbers = () => {
+const valueChange = () => {
   const lines = editor.value.match(/\n/g) ?? [];
 
   const difference = lines.length + 1 - lineNumbers.childNodes.length;
@@ -90,6 +90,8 @@ editor.addEventListener('keydown', (event) => {
         editor.selectionEnd = end + (endline - startline + 1) * 2;
       }
     }
+
+    valueChange();
   }
   if (['Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
     caretChange();
@@ -105,7 +107,7 @@ editor.addEventListener('keyup', (event) => {
 editor.addEventListener('click', caretChange);
 
 editor.addEventListener('input', (event) => {
-  updateLineNumbers();
+  valueChange();
   caretChange();
 });
 
@@ -116,7 +118,7 @@ document.querySelector('.editor-padding').addEventListener('click', (event) => {
 });
 
 window.onload = () => {
-  updateLineNumbers();
+  valueChange();
 
   fetch('TODO.md')
     .then((r) => r.text())
