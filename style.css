@@ -126,6 +126,14 @@ main {
 .resizer {
   width: var(--padding);
   cursor: ew-resize;
+  display: grid;
+  place-items: center;
+
+  & svg {
+    stroke: var(--color);
+    stroke-width: 1;
+    stroke-linecap: round;
+  }
 }
 
 .preview {
