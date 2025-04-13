@@ -125,6 +125,7 @@ main {
 
 .resizer {
   width: var(--padding);
+  min-width: var(--padding);
   cursor: ew-resize;
   display: grid;
   place-items: center;
@@ -150,4 +151,10 @@ main {
   padding-inline: var(--padding);
   overflow-x: auto;
   min-height: 30dvh;
+}
+
+@media (width < 500px) {
+  .editor-tab {
+    min-width: 100%;
+  }
 }
