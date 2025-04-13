@@ -47,11 +47,9 @@ main {
   height: calc(100dvh - var(--nav-height) - var(--padding) * 2);
   width: calc(100vw - var(--padding) * 2);
   display: flex;
-  gap: var(--padding);
 }
 
 .editor-tab {
-  width: 70%;
   min-width: 70ch;
   height: 100%;
   font: normal 1.25rem/1.25 monospace;
@@ -124,9 +122,13 @@ main {
   font-size: 0.75em;
 }
 
+.resizer {
+  width: var(--padding);
+  cursor: ew-resize;
+}
+
 .preview {
   --bg-color: #fff;
-  width: 30%;
   min-width: 50ch;
 
   overflow-y: scroll;

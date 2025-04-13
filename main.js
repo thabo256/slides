@@ -4,9 +4,10 @@ import DOMPurify from 'https://cdn.jsdelivr.net/npm/dompurify@3.2.3/+esm';
 const lineNumbers = document.querySelector('.line-numbers');
 const editor = document.querySelector('#editor');
 const lnColInfo = document.querySelector('#ln-col-info');
+const resizer = document.querySelector('.resizer');
+const preview = document.querySelector('.preview');
 
 const updateSlides = () => {
-  // console.log(text);
   let parsed = DOMPurify.sanitize(marked.parse(editor.value));
 
   // remove disabled attribute from checkboxes
@@ -17,7 +18,7 @@ const updateSlides = () => {
   parsed = parsed.replace(/<h2.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide text-slide">\n${match}\n</div>`);
 
   console.log(parsed);
-  document.querySelector('.preview').innerHTML = parsed;
+  preview.innerHTML = parsed;
 };
 
 /**
@@ -136,4 +137,34 @@ document.querySelector('.editor-padding').addEventListener('click', (event) => {
 
 window.onload = () => {
   valueChange();
+
+  const editorPercentage = parseFloat(localStorage.getItem('editorPercentage')) || 0.7;
+  document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
+  preview.style.width = `${(1 - editorPercentage) * 100}%`;
+};
+
+resizer.addEventListener('mousedown', (event) => {
+  event.preventDefault();
+  document.addEventListener('mousemove', mouseMove);
+  document.addEventListener('mouseup', mouseUp);
+});
+resizer.addEventListener('touchstart', (event) => {
+  event.preventDefault();
+  document.addEventListener('touchmove', mouseMove);
+  document.addEventListener('touchend', mouseUp);
+});
+const mouseMove = (event) => {
+  event.preventDefault();
+  const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
+  document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
+  preview.style.width = `${(1 - editorPercentage) * 100}%`;
+};
+const mouseUp = (event) => {
+  event.preventDefault();
+  document.removeEventListener('mousemove', mouseMove);
+  document.removeEventListener('mouseup', mouseUp);
+  document.removeEventListener('touchmove', mouseMove);
+  document.removeEventListener('touchend', mouseUp);
+  const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
+  localStorage.setItem('editorPercentage', editorPercentage);
 };
