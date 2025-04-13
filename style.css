@@ -22,16 +22,14 @@
   background-color: var(--bg-color-footer);
 }
 
-/* *::-webkit-scrollbar {
-  cursor: default;
-  background: var(--bg-color-secondary);
-  outline: 1px solid red;
-} */
+::-webkit-scrollbar,
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
 
-/* *::-webkit-scrollbar-thumb {
-  cursor: default;
+::-webkit-scrollbar-thumb {
   background: #fff7;
-} */
+}
 
 body {
   margin: 0;
@@ -123,7 +121,7 @@ main {
 #ln-col-info {
   color: var(--color);
   padding-inline: var(--padding);
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
 .preview {
