@@ -153,8 +153,12 @@ main {
   min-height: 30dvh;
 }
 
-@media (width < 500px) {
+@media (width < 600px) {
   .editor-tab {
     min-width: 100%;
+  }
+
+  .resizer svg {
+    display: none;
   }
 }

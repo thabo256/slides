@@ -149,7 +149,7 @@ resizer.addEventListener('mousedown', (event) => {
   document.addEventListener('mouseup', mouseUp);
 });
 resizer.addEventListener('touchstart', (event) => {
-  if (document.documentElement.clientWidth < 500) return;
+  if (document.documentElement.clientWidth < 600) return;
   event.preventDefault();
   document.addEventListener('touchmove', touchMove, { passive: false });
   document.addEventListener('touchend', mouseUp);
