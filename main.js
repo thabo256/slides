@@ -15,7 +15,7 @@ const updateSlides = () => {
 
   // create div around each slide
   parsed = parsed.replace(/<h1.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide title-slide">\n${match}\n</div>`);
-  parsed = parsed.replace(/<h2.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide text-slide">\n${match}\n</div>`);
+  parsed = parsed.replace(/<h2.+?(?=\n?(?:<div class="slide|<h2|$))/gs, (match) => `<div class="slide text-slide">\n${match}\n</div>`);
 
   console.log(parsed);
   preview.innerHTML = parsed;
