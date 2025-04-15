@@ -7,8 +7,8 @@ const lnColInfo = document.querySelector('#ln-col-info');
 const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 
-const updateSlides = () => {
-  let parsed = DOMPurify.sanitize(marked.parse(editor.value));
+const updateSlides = (text) => {
+  let parsed = DOMPurify.sanitize(marked.parse(text));
 
   // remove disabled attribute from checkboxes
   parsed = parsed.replace(/(?<=<input type="checkbox" )disabled=""(?=(?: checked="")?>)/g, '');
@@ -43,7 +43,7 @@ const valueChange = () => {
 
   editor.style.width = `${Math.max(...editor.value.split(/\n/g).map((line) => line.length)) + 2}ch`;
 
-  updateSlides();
+  updateSlides(editor.value);
 };
 
 /**
