@@ -158,6 +158,10 @@ main {
     min-width: 100%;
   }
 
+  .resizer {
+    cursor: default;
+  }
+
   .resizer svg {
     display: none;
   }
