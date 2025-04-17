@@ -19,6 +19,10 @@ const updateSlides = (text) => {
 
   console.log(parsed);
   preview.innerHTML = parsed;
+
+  document.querySelectorAll('.slide').forEach((slide) => {
+    slide.addEventListener('click', slideClick);
+  });
 };
 
 /**
@@ -183,4 +187,12 @@ const mouseUp = (event) => {
   document.removeEventListener('touchcancel', mouseUp);
   const editorPercentage = document.querySelector('.editor-tab').style.width.replace('%', '') / 100;
   localStorage.setItem('editorPercentage', editorPercentage);
+};
+
+const slideClick = (event) => {
+  const title = event.currentTarget.firstElementChild.innerText;
+  const index = editor.value.search(new RegExp(`(?<=^ {0,3}#{1,2}[ \t]+)${title}(?:[ \t]+#*[ \t]*)?$`, 'm'));
+
+  editor.setSelectionRange(index, index + title.length);
+  editor.focus();
 };
