@@ -150,7 +150,7 @@ main {
   margin-bottom: var(--padding);
   padding-inline: var(--padding);
   overflow-x: auto;
-  min-height: 30dvh;
+  aspect-ratio: var(--preview-aspect-ratio, 16 / 9);
 }
 
 @media (width < 600px) {
