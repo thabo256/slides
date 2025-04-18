@@ -21,7 +21,7 @@ const updateSlides = (text) => {
   preview.innerHTML = parsed;
 
   document.querySelectorAll('.slide').forEach((slide) => {
-    slide.addEventListener('click', slideClick);
+    slide.addEventListener('dblclick', slideClick);
   });
 };
 
