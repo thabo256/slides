@@ -8,6 +8,7 @@ const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 
 const updateSlides = (text) => {
+  preview.innerHTML = '';
   const split = text.split(/^( {0,3}#{1,2}[ \t]+(.+?)(?:[ \t]+#*[ \t]*)?)$/gm);
 
   for (let i = 1; i < split.length; i += 3) {
