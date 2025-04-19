@@ -8,21 +8,21 @@ const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 
 const updateSlides = (text) => {
-  let parsed = DOMPurify.sanitize(marked.parse(text));
+  const split = text.split(/^( {0,3}#{1,2}[ \t]+(.+?)(?:[ \t]+#*[ \t]*)?)$/gm);
 
-  // remove disabled attribute from checkboxes
-  parsed = parsed.replace(/(?<=<input type="checkbox" )disabled=""(?=(?: checked="")?>)/g, '');
+  for (let i = 1; i < split.length; i += 3) {
+    let parsed = DOMPurify.sanitize(marked.parse(split[i] + split[i + 2]));
 
-  // create div around each slide
-  parsed = parsed.replace(/<h1.+?(?=\n?(?:<h1|<h2|$))/gs, (match) => `<div class="slide title-slide">\n${match}\n</div>`);
-  parsed = parsed.replace(/<h2.+?(?=\n?(?:<div class="slide|<h2|$))/gs, (match) => `<div class="slide text-slide">\n${match}\n</div>`);
+    // remove disabled attribute from checkboxes
+    parsed = parsed.replace(/(?<=<input type="checkbox" )disabled=""(?=(?: checked="")?>)/g, '');
 
-  console.log(parsed);
-  preview.innerHTML = parsed;
-
-  document.querySelectorAll('.slide').forEach((slide) => {
+    const slide = document.createElement('div');
+    slide.classList.add('slide');
+    slide.classList.add(/^ {0,3}##/.test(split[i]) ? 'text-slide' : 'title-slide');
+    slide.innerHTML = parsed;
+    preview.appendChild(slide);
     slide.addEventListener('dblclick', slideClick);
-  });
+  }
 };
 
 /**
