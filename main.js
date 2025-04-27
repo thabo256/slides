@@ -7,7 +7,7 @@ const lnColInfo = document.querySelector('#ln-col-info');
 const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 
-const updateSlides = (text) => {
+const updateSlides = text => {
   preview.innerHTML = '';
   const split = text.split(/^( {0,3}#{1,2}[ \t]+(.+?)(?:[ \t]+#*[ \t]*)?)$/gm);
 
@@ -47,7 +47,7 @@ const valueChange = () => {
     }
   }
 
-  editor.style.width = `${Math.max(...editor.value.split(/\n/g).map((line) => line.length)) + 2}ch`;
+  editor.style.width = `${Math.max(...editor.value.split(/\n/g).map(line => line.length)) + 2}ch`;
 
   updateSlides(editor.value);
 };
@@ -70,7 +70,7 @@ const caretChange = () => {
   lnColInfo.textContent = `Ln ${ln}, Col ${col}`;
 };
 
-editor.addEventListener('keydown', (event) => {
+editor.addEventListener('keydown', event => {
   if (event.key === 'Tab') {
     event.preventDefault();
 
@@ -89,8 +89,8 @@ editor.addEventListener('keydown', (event) => {
       // array of lines as matches (includes lines and their index)
       const lines = [...editor.value.matchAll(/^.*$/gm)];
 
-      const startline = lines.findLastIndex((line) => line.index <= start);
-      const endline = lines.findLastIndex((line) => line.index <= end);
+      const startline = lines.findLastIndex(line => line.index <= start);
+      const endline = lines.findLastIndex(line => line.index <= end);
 
       if (event.shiftKey) {
         // if shifted: reindent
@@ -122,7 +122,7 @@ editor.addEventListener('keydown', (event) => {
   }
 });
 
-editor.addEventListener('keyup', (event) => {
+editor.addEventListener('keyup', event => {
   if (['Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
     caretChange();
   }
@@ -130,12 +130,12 @@ editor.addEventListener('keyup', (event) => {
 
 editor.addEventListener('click', caretChange);
 
-editor.addEventListener('input', (event) => {
+editor.addEventListener('input', event => {
   valueChange();
   caretChange();
 });
 
-document.querySelector('.editor-padding').addEventListener('click', (event) => {
+document.querySelector('.editor-padding').addEventListener('click', event => {
   editor.focus();
   editor.setSelectionRange(editor.value.length, editor.value.length);
   caretChange();
@@ -155,32 +155,32 @@ window.onload = () => {
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
 
-resizer.addEventListener('mousedown', (event) => {
+resizer.addEventListener('mousedown', event => {
   event.preventDefault();
   document.addEventListener('mousemove', mouseMove);
   document.addEventListener('mouseup', mouseUp);
 });
-resizer.addEventListener('touchstart', (event) => {
+resizer.addEventListener('touchstart', event => {
   if (document.documentElement.clientWidth < 600) return;
   event.preventDefault();
   document.addEventListener('touchmove', touchMove, { passive: false });
   document.addEventListener('touchend', mouseUp);
   document.addEventListener('touchcancel', mouseUp);
 });
-const mouseMove = (event) => {
+const mouseMove = event => {
   event.preventDefault();
   const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
-const touchMove = (event) => {
+const touchMove = event => {
   event.preventDefault();
   if (event.touches.length > 1) return;
   const editorPercentage = Math.min(Math.max(event.touches[0].clientX / window.innerWidth, 0.1), 0.9);
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
-const mouseUp = (event) => {
+const mouseUp = event => {
   event.preventDefault();
   document.removeEventListener('mousemove', mouseMove);
   document.removeEventListener('mouseup', mouseUp);
@@ -191,7 +191,7 @@ const mouseUp = (event) => {
   localStorage.setItem('editorPercentage', editorPercentage);
 };
 
-const slideClick = (event) => {
+const slideClick = event => {
   const title = event.currentTarget.firstElementChild.innerText;
   const index = editor.value.search(new RegExp(`(?<=^ {0,3}#{1,2}[ \t]+)${title}(?:[ \t]+#*[ \t]*)?$`, 'm'));
 
