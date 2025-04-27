@@ -61,9 +61,6 @@ main {
   overflow-y: scroll;
   overflow-x: auto;
 
-  /* magic numbers */
-  scroll-padding: 10vh 0 50vh;
-
   background-color: var(--bg-color-secondary);
 }
 
