@@ -198,3 +198,26 @@ const slideClick = event => {
   editor.setSelectionRange(index, index + title.length);
   editor.focus();
 };
+
+/**
+ * Downloads a file with the given filename and text.
+ * @param {String} filename the name of the downloaded file
+ * @param {String} text the content of the file
+ */
+const downloadFile = (filename, text) => {
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  }, 0);
+};
+
+document.querySelector('#download-button').addEventListener('click', () => {
+  downloadFile('presentation.html', preview.innerHTML);
+});
