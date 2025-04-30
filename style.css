@@ -93,6 +93,7 @@ main {
 .editor {
   padding: var(--padding);
   padding-left: 0;
+  width: fit-content;
   display: flex;
   gap: var(--padding);
 
