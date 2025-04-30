@@ -219,5 +219,8 @@ const downloadFile = (filename, text) => {
 };
 
 document.querySelector('#download-button').addEventListener('click', () => {
-  downloadFile('presentation.html', preview.innerHTML);
+  const title = 'Presentation';
+  const html = `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>${title}</title></head>\n<body>\n${preview.innerHTML}\n</body>\n</html>`;
+
+  downloadFile('presentation.html', html);
 });
