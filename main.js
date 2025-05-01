@@ -220,7 +220,13 @@ const downloadFile = (filename, text) => {
 
 document.querySelector('#download-button').addEventListener('click', () => {
   const title = 'Presentation';
-  const html = `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>${title}</title></head>\n<body>\n${preview.innerHTML}\n</body>\n</html>`;
 
-  downloadFile('presentation.html', html);
+  fetch('html-template.html')
+    .then(r => r.text())
+    .then(html => {
+      html = html.replace(/{{title}}/, title);
+      html = html.replace(/{{body}}/, preview.innerHTML);
+
+      downloadFile('presentation.html', html);
+    });
 });
