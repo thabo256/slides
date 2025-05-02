@@ -20,7 +20,7 @@ const updateSlides = text => {
     const slide = document.createElement('div');
     slide.classList.add('slide');
     slide.classList.add(/^ {0,3}##/.test(split[i]) ? 'text-slide' : 'title-slide');
-    slide.id = `slide-${(i + 2) / 3}`;
+    slide.id = `slide-${(i - 1) / 3}`;
     slide.innerHTML = parsed;
     preview.appendChild(slide);
     slide.addEventListener('dblclick', slideClick);

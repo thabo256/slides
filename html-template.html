@@ -4,8 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .slide {
+        min-height: calc(100vh - 16px);
+        padding: 8px;
+      }
+    </style>
   </head>
   <body>
     {{body}}
+    <script>
+      let currentSlide = 0;
+      document.addEventListener('keyup', event => {
+        if (event.defaultPrevented) {
+          return; // Do nothing if the event was already processed
+        }
+        if (event.key === ' ' || event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          currentSlide++;
+          document.querySelector(`#slide-${currentSlide}`).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          currentSlide-- > 0 || (currentSlide = 0);
+          document.querySelector(`#slide-${currentSlide}`).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest',
+          });
+        }
+      });
+    </script>
   </body>
 </html>
