@@ -180,6 +180,14 @@ main {
   aspect-ratio: var(--preview-aspect-ratio, 16 / 9);
 }
 
+.preview .title-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 @media (width < 600px) {
   .editor-tab {
     min-width: 100%;
