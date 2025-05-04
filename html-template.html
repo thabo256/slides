@@ -25,7 +25,7 @@
     {{body}}
     <script>
       let currentSlide = 0;
-      document.addEventListener('keyup', event => {
+      document.addEventListener('keydown', event => {
         if (event.defaultPrevented) {
           return; // Do nothing if the event was already processed
         }
