@@ -142,11 +142,11 @@ document.querySelector('.editor-padding').addEventListener('click', event => {
 });
 
 window.onload = () => {
-  valueChange();
-
   const editorPercentage = parseFloat(localStorage.getItem('editorPercentage')) || 0.7;
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
+
+  valueChange();
 };
 
 resizer.addEventListener('mousedown', event => {
