@@ -50,6 +50,7 @@ const valueChange = () => {
   editor.style.width = `${Math.max(...editor.value.split(/\n/g).map(line => line.length)) + 2}ch`;
 
   updateSlides(editor.value);
+  localStorage.setItem('editorContent', editor.value);
 };
 
 /**
@@ -145,6 +146,9 @@ window.onload = () => {
   const editorPercentage = parseFloat(localStorage.getItem('editorPercentage')) || 0.7;
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
+
+  // TODO: add example/tutorial slides
+  editor.value = localStorage.getItem('editorContent') || '';
 
   valueChange();
 };
