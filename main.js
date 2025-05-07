@@ -144,12 +144,6 @@ document.querySelector('.editor-padding').addEventListener('click', event => {
 window.onload = () => {
   valueChange();
 
-  // fetch('TODO.md')
-  //   .then((r) => r.text())
-  //   .then((text) => {
-  //     updateSlides(text);
-  //   });
-
   const editorPercentage = parseFloat(localStorage.getItem('editorPercentage')) || 0.7;
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
