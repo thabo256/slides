@@ -12,7 +12,19 @@ const updateSlides = text => {
   const split = text.split(/^( {0,3}#{1,2}[ \t]+(.+?)(?:[ \t]+#*[ \t]*)?)$/gm);
 
   for (let i = 1; i < split.length; i += 3) {
-    let parsed = DOMPurify.sanitize(marked.parse(split[i] + split[i + 2]));
+    let content;
+
+    if (/^ {0,3}<!--contents-->/m.test(split[i + 2])) {
+      content = split[i] + '\n\n';
+      for (let j = i + 4; j < split.length; j += 3) {
+        content += `- [${split[j]}](#slide-${(j - 2) / 3})\n`;
+      }
+      console.log(content);
+    } else {
+      content = split[i] + split[i + 2];
+    }
+
+    let parsed = DOMPurify.sanitize(marked.parse(content));
 
     // remove disabled attribute from checkboxes
     parsed = parsed.replace(/(?<=<input type="checkbox" )disabled=""(?=(?: checked="")?>)/g, '');
