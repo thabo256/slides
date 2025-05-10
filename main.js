@@ -23,7 +23,6 @@ const updateSlides = text => {
       for (let j = i + 4; j < split.length; j += 3) {
         content += `- [${split[j]}](#slide-${(j - 2) / 3})\n`;
       }
-      console.log(content);
     } else {
       content = split[i] + split[i + 2];
     }
