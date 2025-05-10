@@ -7,6 +7,10 @@ const lnColInfo = document.querySelector('#ln-col-info');
 const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 
+/**
+ * Updates the slides in the preview area based on the markdown formatted text.
+ * @param {string} text markdown formatted text to be converted to HTML
+ */
 const updateSlides = text => {
   preview.innerHTML = '';
   const split = text.split(/^( {0,3}#{1,2}[ \t]+(.+?)(?:[ \t]+#*[ \t]*)?)$/gm);
@@ -201,6 +205,10 @@ const mouseUp = event => {
   localStorage.setItem('editorPercentage', editorPercentage);
 };
 
+/**
+ * Selects the clicked slide in the editor.
+ * @param {MouseEvent} event
+ */
 const slideClick = event => {
   const title = event.currentTarget.firstElementChild.innerText;
   const index = editor.value.search(new RegExp(`(?<=^ {0,3}#{1,2}[ \t]+)${title}(?:[ \t]+#*[ \t]*)?$`, 'm'));
