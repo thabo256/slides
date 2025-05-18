@@ -87,6 +87,8 @@ main {
   overflow-y: scroll;
   overflow-x: auto;
 
+  scroll-padding: var(--padding);
+
   background-color: var(--bg-color-secondary);
 }
 
