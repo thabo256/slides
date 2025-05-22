@@ -65,6 +65,26 @@ header {
     stroke-width: 1;
     stroke-linecap: round;
     fill: none;
+
+    > * {
+      transform-origin: center;
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}
+
+#menu-button[aria-expanded="true"] {
+  & .top {
+    transform: translate(0, -4px);
+  }
+  & .middle-1 {
+    transform: rotate(45deg);
+  }
+  & .middle-2 {
+    transform: rotate(-45deg);
+  }
+  & .bottom {
+    transform: translate(0, 4px);
   }
 }
 

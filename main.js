@@ -6,6 +6,7 @@ const editor = document.querySelector('#editor');
 const lnColInfo = document.querySelector('#ln-col-info');
 const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
+const menuButton = document.querySelector('#menu-button');
 
 /**
  * Updates the slides in the preview area based on the markdown formatted text.
@@ -246,4 +247,12 @@ document.querySelector('#download-button').addEventListener('click', () => {
 
       downloadFile('presentation.html', html);
     });
+});
+
+menuButton.addEventListener('click', () => {
+  if (menuButton.getAttribute('aria-expanded') === 'true') {
+    menuButton.setAttribute('aria-expanded', 'false');
+  } else {
+    menuButton.setAttribute('aria-expanded', 'true');
+  }
 });
