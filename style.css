@@ -16,6 +16,7 @@
   --padding: 16px;
   --nav-height: 4rem;
   --footer-height: 1.5rem;
+  --sidebar-width: 25ch;
 }
 
 .footer {
@@ -45,6 +46,8 @@ header {
   padding: calc(var(--padding) / 2);
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 10;
 
   & button {
     height: 100%;
@@ -73,7 +76,7 @@ header {
   }
 }
 
-#menu-button[aria-expanded="true"] {
+#menu-button[aria-expanded='true'] {
   & .top {
     transform: translate(0, -4px);
   }
@@ -93,6 +96,21 @@ main {
   height: calc(100dvh - var(--nav-height) - var(--padding) * 2);
   width: calc(100vw - var(--padding) * 2);
   display: flex;
+}
+
+.menu-sidebar {
+  width: var(--sidebar-width);
+  padding: var(--padding);
+  position: absolute;
+  z-index: 1;
+  transition: translate 0.2s ease-in-out;
+
+  background-color: var(--bg-color-footer);
+  color: var(--color);
+
+  &[aria-hidden='true'] {
+    translate: 0 -100%;
+  }
 }
 
 .editor-tab {

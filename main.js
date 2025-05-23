@@ -7,6 +7,7 @@ const lnColInfo = document.querySelector('#ln-col-info');
 const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 const menuButton = document.querySelector('#menu-button');
+const menu = document.querySelector('.menu-sidebar');
 
 /**
  * Updates the slides in the preview area based on the markdown formatted text.
@@ -252,7 +253,9 @@ document.querySelector('#download-button').addEventListener('click', () => {
 menuButton.addEventListener('click', () => {
   if (menuButton.getAttribute('aria-expanded') === 'true') {
     menuButton.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
   } else {
     menuButton.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
   }
 });
