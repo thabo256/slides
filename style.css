@@ -242,6 +242,15 @@ main {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  header svg > * {
+    transition: none;
+  }
+  .menu-sidebar {
+    transition: none;
+  }
+}
+
 .preview * {
   all: revert;
 }
