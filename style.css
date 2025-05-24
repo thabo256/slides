@@ -105,7 +105,8 @@ main {
   z-index: 1;
   transition: translate 0.2s ease-in-out;
 
-  background-color: var(--bg-color-footer);
+  background-color: color-mix(in srgb, var(--bg-color-footer) 30%, transparent);
+  backdrop-filter: blur(0.5em);
   color: var(--color);
 
   &[aria-hidden='true'] {
