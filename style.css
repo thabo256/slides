@@ -57,7 +57,8 @@ header {
     color: inherit;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background: var(--bg-color-hover);
     }
   }
@@ -111,6 +112,23 @@ main {
 
   &[aria-hidden='true'] {
     translate: 0 -100%;
+  }
+
+  & button {
+    width: 100%;
+    padding: calc(var(--padding) / 2);
+    background: none;
+    border: 1px solid transparent;
+    color: var(--color);
+    text-align: left;
+    cursor: pointer;
+    transition: border 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: color-mix(in srgb, var(--bg-color-footer) 40%, transparent);
+      border-color: transparent transparent var(--color);
+    }
   }
 }
 
