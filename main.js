@@ -182,16 +182,24 @@ resizer.addEventListener('touchstart', event => {
   document.addEventListener('touchend', mouseUp);
   document.addEventListener('touchcancel', mouseUp);
 });
+const percentage = (value, min, max) => {
+  return (value - min) / (max - min);
+};
+const clamp = (value, min, max) => {
+  return Math.min(Math.max(value, min), max);
+};
 const mouseMove = event => {
   event.preventDefault();
-  const editorPercentage = Math.min(Math.max(event.clientX / window.innerWidth, 0.1), 0.9);
+  const padding = parseInt(window.getComputedStyle(document.body).getPropertyValue('--padding'));
+  const editorPercentage = clamp(percentage(event.clientX, padding * 1.5, window.innerWidth - padding * 1.5), 0.1, 0.9);
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
 const touchMove = event => {
   event.preventDefault();
   if (event.touches.length > 1) return;
-  const editorPercentage = Math.min(Math.max(event.touches[0].clientX / window.innerWidth, 0.1), 0.9);
+  const padding = parseInt(window.getComputedStyle(document.body).getPropertyValue('--padding'));
+  const editorPercentage = clamp(percentage(event.touches[0].clientX, padding * 1.5, window.innerWidth - padding * 1.5), 0.1, 0.9);
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 };
