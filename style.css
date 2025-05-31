@@ -14,6 +14,7 @@
   --color: #fff;
   --color-dim: #888;
   --padding: 16px;
+  --padding-sm: calc(var(--padding) / 2);
   --nav-height: 4rem;
   --footer-height: 1.5rem;
   --sidebar-width: 25ch;
@@ -43,7 +44,7 @@ header {
   height: var(--nav-height);
   background-color: var(--bg-color-secondary);
   color: var(--color);
-  padding: calc(var(--padding) / 2);
+  padding: var(--padding-sm);
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -51,7 +52,7 @@ header {
 
   & button {
     height: 100%;
-    padding: calc(var(--padding) / 2);
+    padding: var(--padding-sm);
     background: none;
     border: none;
     color: inherit;
@@ -117,7 +118,7 @@ main {
 
   & button {
     width: 100%;
-    padding: calc(var(--padding) / 2);
+    padding: var(--padding-sm);
     background: none;
     border: 1px solid transparent;
     color: var(--color);
@@ -131,6 +132,49 @@ main {
       border-color: transparent transparent var(--color);
     }
   }
+}
+
+dialog {
+  background-color: var(--bg-color-secondary);
+  color: var(--color);
+  padding: 0 var(--padding);
+  border: none;
+  overflow: visible;
+
+  &::backdrop {
+    background-color: color-mix(in srgb, var(--bg-color) 50%, transparent);
+    backdrop-filter: blur(0.25em);
+  }
+
+  & button {
+    background-color: var(--bg-color-secondary);
+    color: var(--color);
+    border: none;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bg-color-hover);
+    }
+  }
+}
+
+.dialog-content {
+  overflow-y: scroll;
+  width: min(70vw, 20ch);
+  max-height: 70vh;
+  padding: var(--padding) 0;
+}
+
+#dialog-close-x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  translate: 30% -30%;
+}
+
+.dialog-button {
+  padding: var(--padding-sm);
+  width: 100%;
 }
 
 .editor-tab {
