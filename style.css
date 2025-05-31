@@ -99,7 +99,7 @@ main {
   display: flex;
 }
 
-.menu-sidebar {
+#menu-sidebar {
   width: var(--sidebar-width);
   padding: var(--padding);
   position: absolute;
@@ -266,7 +266,7 @@ main {
   header svg > * {
     transition: none;
   }
-  .menu-sidebar {
+  #menu-sidebar {
     transition: none;
   }
 }
