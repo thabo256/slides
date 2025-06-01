@@ -146,10 +146,19 @@ dialog {
     backdrop-filter: blur(0.25em);
   }
 
-  & button {
+  & h2 {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  & button,
+  & a {
+    display: block;
+    text-align: center;
     background-color: var(--bg-color-secondary);
     color: var(--color);
     border: none;
+    cursor: pointer;
 
     &:hover,
     &:focus-visible {
