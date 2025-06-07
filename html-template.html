@@ -30,26 +30,53 @@
     {{body}}
     <script>
       let currentSlide = 0;
+      let currentLi = 0;
+      const lastSlide = document.body.childElementCount - 2;
+      const changeSlide = id => {
+        if (id < 0) {
+          id = 0;
+        } else if (id > lastSlide) {
+          id = lastSlide;
+        }
+        document.querySelector(`#slide-${id}`).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
+        return id;
+      };
       document.addEventListener('keydown', event => {
         if (event.defaultPrevented) {
           return; // Do nothing if the event was already processed
         }
         if (event.key === ' ' || event.key === 'ArrowDown' || event.key === 'ArrowRight') {
           event.preventDefault();
-          currentSlide++;
-          document.querySelector(`#slide-${currentSlide}`).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest',
-          });
+          const lis = document.querySelectorAll(`#slide-${currentSlide} li`);
+          if (currentLi < lis.length) {
+            lis[currentLi].style = 'opacity: 1;';
+            currentLi++;
+            if (currentLi === 1) {
+              for (let i = 1; i < lis.length; i++) {
+                lis[i].style = 'opacity: 0;';
+              }
+            }
+          } else {
+            currentLi = 0;
+            currentSlide = changeSlide(currentSlide + 1);
+            // select the new slide and hide lis
+            document.querySelectorAll(`#slide-${currentSlide} li`).forEach(li => {
+              li.style = 'opacity: 0;';
+            });
+          }
         } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
           event.preventDefault();
-          currentSlide-- > 0 || (currentSlide = 0);
-          document.querySelector(`#slide-${currentSlide}`).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest',
-          });
+          const lis = document.querySelectorAll(`#slide-${currentSlide} li`);
+          if (currentLi > 0) {
+            currentLi--;
+            lis[currentLi].style = 'opacity: 0;';
+          } else {
+            currentSlide = changeSlide(currentSlide - 1);
+          }
         }
       });
     </script>
