@@ -299,6 +299,10 @@ dialog {
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  > hr {
+    width: 100%;
+  }
 }
 
 @media (width < 600px) {
