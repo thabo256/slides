@@ -274,6 +274,12 @@ dialog {
     stroke: var(--color);
     stroke-width: 1;
     stroke-linecap: round;
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+  }
+
+  &:hover svg {
+    opacity: 1;
   }
 }
 
@@ -324,6 +330,10 @@ dialog {
     transition: none;
   }
   #menu-sidebar {
+    transition: none;
+  }
+  .resizer svg {
+    opacity: 1;
     transition: none;
   }
 }
