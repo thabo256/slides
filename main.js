@@ -25,6 +25,15 @@ const updateSlides = text => {
       for (let j = i + 4; j < split.length; j += 3) {
         content += `- [${split[j]}](#slide-${(j - 2) / 3})\n`;
       }
+    } else if (/^ {0,3}<!--flex-->/m.test(split[i + 2])) {
+      content = split[i] + '\n\n<div class="flex-container">\n';
+
+      const items = split[i + 2].split(/^(?= {0,3}###[ \t]+.+?(?:[ \t]+#*[ \t]*)?$)/gm);
+
+      for (let j = 1; j < items.length; j++) {
+        content += `<div class="flex-item">\n\n${items[j]}</div>\n`;
+      }
+      content += '</div>';
     } else {
       content = split[i] + split[i + 2];
     }

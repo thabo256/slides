@@ -299,18 +299,6 @@ dialog {
   aspect-ratio: var(--preview-aspect-ratio, 16 / 9);
 }
 
-.preview .title-slide {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  > hr {
-    width: 100%;
-  }
-}
-
 @media (width < 600px) {
   .editor-tab {
     min-width: 100%;
@@ -340,4 +328,22 @@ dialog {
 
 .preview * {
   all: revert;
+
+  & .title-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    > hr {
+      width: 100%;
+    }
+  }
+
+  & .flex-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 16px;
+  }
 }
