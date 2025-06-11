@@ -254,6 +254,16 @@ const downloadFile = (filename, text) => {
   }, 0);
 };
 
+const parseFeatures = text => {
+  const features = [];
+  if (/^ {0,3}<!--contents-->/m.test(text)) {
+    features.push('contents');
+  } else if (/^ {0,3}<!--flex-->/m.test(text)) {
+    features.push('flex');
+  }
+  return features;
+};
+
 document.querySelector('#download-button').addEventListener('click', () => {
   const title = 'Presentation';
 
