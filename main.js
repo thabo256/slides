@@ -258,7 +258,8 @@ const parseFeatures = text => {
   const features = [];
   if (/^ {0,3}<!--contents-->/m.test(text)) {
     features.push('contents');
-  } else if (/^ {0,3}<!--flex-->/m.test(text)) {
+  }
+  if (/^ {0,3}<!--flex-->/m.test(text)) {
     features.push('flex');
   }
   return features;
