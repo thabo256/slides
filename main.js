@@ -265,13 +265,24 @@ const parseFeatures = text => {
   return features;
 };
 
+const getStyles = features => {
+  let styles = '';
+
+  if (features.includes('flex')) {
+    styles += '.flex-container { display: flex; justify-content: space-evenly; gap: 16px; }\n';
+  }
+  return styles;
+};
+
 document.querySelector('#download-button').addEventListener('click', () => {
   const title = 'Presentation';
+  const styles = `<style>\n${getStyles(parseFeatures(editor.value))}</style>`;
 
   fetch('html-template.html')
     .then(r => r.text())
     .then(html => {
       html = html.replace(/{{title}}/, title);
+      html = html.replace(/{{styles}}/, styles);
       html = html.replace(/{{body}}/, preview.innerHTML);
 
       downloadFile('presentation.html', html);
