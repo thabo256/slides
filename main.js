@@ -19,6 +19,7 @@ const updateSlides = text => {
 
   for (let i = 1; i < split.length; i += 3) {
     let content;
+    let classes = [];
 
     if (/^ {0,3}<!--contents-->/m.test(split[i + 2])) {
       content = split[i] + '\n\n';
@@ -37,6 +38,9 @@ const updateSlides = text => {
     } else {
       content = split[i] + split[i + 2];
     }
+    if (/^ {0,3}<!--bg-.*?-->/m.test(split[i + 2])) {
+      classes.push(split[i + 2].match(/^ {0,3}<!--(bg-.*?)-->/m)[1]);
+    }
 
     let parsed = DOMPurify.sanitize(marked.parse(content));
 
@@ -46,6 +50,7 @@ const updateSlides = text => {
     const slide = document.createElement('div');
     slide.classList.add('slide');
     slide.classList.add(/^ {0,3}##/.test(split[i]) ? 'text-slide' : 'title-slide');
+    slide.classList.add(...classes);
     slide.id = `slide-${(i - 1) / 3}`;
     slide.innerHTML = parsed;
     preview.appendChild(slide);
