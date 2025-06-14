@@ -259,6 +259,11 @@ const downloadFile = (filename, text) => {
   }, 0);
 };
 
+/**
+ * parses the given text for features
+ * @param {string} text text to parse for features
+ * @returns {string[]} array of features found in the text
+ */
 const parseFeatures = text => {
   const features = [];
   if (/^ {0,3}<!--contents-->/m.test(text)) {
@@ -270,6 +275,11 @@ const parseFeatures = text => {
   return features;
 };
 
+/**
+ * gets the CSS styles for the given features.
+ * @param {string[]} features 
+ * @returns {string} CSS styles for the given features
+ */
 const getStyles = features => {
   let styles = '';
 
