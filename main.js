@@ -272,12 +272,15 @@ const parseFeatures = text => {
   if (/^ {0,3}<!--flex-->/m.test(text)) {
     features.push('flex');
   }
+  if (/^ {0,3}<!--bg-.*?-->/m.test(text)) {
+    features.push('bg');
+  }
   return features;
 };
 
 /**
  * gets the CSS styles for the given features.
- * @param {string[]} features 
+ * @param {string[]} features
  * @returns {string} CSS styles for the given features
  */
 const getStyles = features => {
@@ -285,6 +288,13 @@ const getStyles = features => {
 
   if (features.includes('flex')) {
     styles += '.flex-container { display: flex; justify-content: space-evenly; gap: 16px; }\n';
+  }
+  if (features.includes('bg')) {
+    styles += '.bg-dark { background-color: #333; }\n';
+    styles += '.bg-light { background-color: #f0f0f0; }\n';
+    styles += '.bg-blue { background-color: blue }\n';
+    styles += '.bg-green { background-color: green }\n';
+    styles += '.bg-red { background-color: red }\n';
   }
   return styles;
 };
