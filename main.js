@@ -295,6 +295,7 @@ const getStyles = features => {
     styles += '.bg-blue { background-color: blue }\n';
     styles += '.bg-green { background-color: green }\n';
     styles += '.bg-red { background-color: red }\n';
+    styles += '.bg-blur { backdrop-filter: blur(0.25em); }\n';
   }
   return styles;
 };
