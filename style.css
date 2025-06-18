@@ -327,8 +327,6 @@ dialog {
 }
 
 .preview * {
-  all: revert;
-
   & .title-slide {
     display: flex;
     flex-direction: column;
