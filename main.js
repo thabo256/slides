@@ -50,7 +50,7 @@ const updateSlides = text => {
 
     // replace svg
     parsed = parsed.replace(/<svg[^>]*>\[([\s\S]*?)\]<\/svg>/g, (match, tag) => {
-      return svgs[tag] ?? svgs.questionmark;
+      return svgs[tag] ?? svgs.not_found ?? '?';
     });
 
     const slide = document.createElement('div');
