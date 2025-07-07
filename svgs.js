@@ -5,4 +5,5 @@ export const svgs = {
   check: '<svg height="3ex" viewBox="0 0 9 9"><path d="M1,5L4,8,8,1" fill="none" stroke="currentColor" stroke-width="1"/></svg>',
   cross: '<svg height="3ex" viewBox="0 0 9 9"><path d="M1,1L8,8M8,1L1,8" fill="none" stroke="currentColor" stroke-width="1"/></svg>',
   info: '<svg height="3ex" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor" stroke-width="1"/><line x1="4.5" y1="4" x2="4.5" y2="6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="4.5" cy="2.5" r="0.5" fill="currentColor"/></svg>',
+  warn: '<svg height="3ex" viewBox="0 0 9 9"><path d="M4.5,0.5L8.5,8H0.5Z" fill="none" stroke="currentColor" stroke-width="1"/><line x1="4.5" y1="3" x2="4.5" y2="5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="4.5" cy="6.5" r="0.5" fill="currentColor"</svg>'
 };
