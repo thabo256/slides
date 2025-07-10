@@ -13,5 +13,6 @@ export const svgs = {
   check: '<svg height="3ex" viewBox="0 0 9 9"><path d="M1,5L4,8,8,1" fill="none" stroke="currentColor" stroke-width="1"/></svg>',
   cross: '<svg height="3ex" viewBox="0 0 9 9"><path d="M1,1L8,8M8,1L1,8" fill="none" stroke="currentColor" stroke-width="1"/></svg>',
   info: '<svg height="3ex" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor" stroke-width="1"/><line x1="4.5" y1="4" x2="4.5" y2="6.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="4.5" cy="2.5" r="0.5" fill="currentColor"/></svg>',
-  warn: '<svg height="3ex" viewBox="0 0 9 9"><path d="M4.5,0.5L8.5,8H0.5Z" fill="none" stroke="currentColor" stroke-width="1"/><line x1="4.5" y1="3" x2="4.5" y2="5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="4.5" cy="6.5" r="0.5" fill="currentColor"</svg>'
+  warn: '<svg height="3ex" viewBox="0 0 9 9"><path d="M4.5,0.5L8.5,8H0.5Z" fill="none" stroke="currentColor" stroke-width="1"/><line x1="4.5" y1="3" x2="4.5" y2="5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="4.5" cy="6.5" r="0.5" fill="currentColor"</svg>',
+  markdown: '<svg height="3ex" viewBox="0 0 208 128"><path fill="none" stroke="currentColor" stroke-width="10" d="M15 5h178a10 10 0 0 1 10 10v98a10 10 0 0 1-10 10H15a10 10 0 0 1-10-10V15A10 10 0 0 1 15 5z"/><path fill="currentColor" d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39H30zm125 0-30-33h20V30h20v35h20l-30 33z"/></svg>',
 };
