@@ -329,7 +329,7 @@ dialog {
 .preview * {
   font: revert;
 
-  & .title-slide {
+  &.title-slide {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -341,7 +341,7 @@ dialog {
     }
   }
 
-  & .flex-container {
+  &.flex-container {
     display: flex;
     justify-content: space-evenly;
     gap: 16px;
