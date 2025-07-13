@@ -8,7 +8,7 @@ const lnColInfo = document.querySelector('#ln-col-info');
 const resizer = document.querySelector('.resizer');
 const preview = document.querySelector('.preview');
 const menuButton = document.querySelector('#menu-button');
-const menu = document.querySelector('.menu-sidebar');
+const menu = document.querySelector('#menu-sidebar');
 
 /**
  * Updates the slides in the preview area based on the markdown formatted text.
