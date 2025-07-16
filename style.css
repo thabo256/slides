@@ -117,7 +117,8 @@ main {
     opacity: 0;
   }
 
-  & button {
+  button,
+  a {
     width: 100%;
     padding: var(--padding-sm);
     background: none;
