@@ -184,8 +184,21 @@ window.onload = () => {
   document.querySelector('.editor-tab').style.width = `${editorPercentage * 100}%`;
   preview.style.width = `${(1 - editorPercentage) * 100}%`;
 
-  // TODO: add example/tutorial slides
-  editor.value = localStorage.getItem('editorContent') || '';
+  editor.value = localStorage.getItem('editorContent');
+  if (!editor.value) {
+    fetch('example.md')
+      .then(response => {
+        if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+        return response.text();
+      })
+      .then(text => {
+        editor.value = text;
+        valueChange();
+      })
+      .catch(error => {
+        console.error('Error loading example slides:', error);
+      });
+  }
 
   valueChange();
 };
