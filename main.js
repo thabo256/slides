@@ -324,7 +324,10 @@ document.querySelector('#download-button').addEventListener('click', () => {
   const styles = `<style>\n${getStyles(parseFeatures(editor.value))}</style>`;
 
   fetch('html-template.html')
-    .then(r => r.text())
+    .then(response => {
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return response.text();
+    })
     .then(html => {
       html = html.replace(/{{title}}/, title);
       html = html.replace(/{{styles}}/, styles);
