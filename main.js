@@ -334,6 +334,9 @@ document.querySelector('#download-button').addEventListener('click', () => {
       html = html.replace(/{{body}}/, preview.innerHTML);
 
       downloadFile('presentation.html', html);
+    })
+    .catch(error => {
+      console.error('Error downloading presentation:', error);
     });
 });
 
