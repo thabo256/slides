@@ -212,7 +212,7 @@ dialog {
   display: flex;
   gap: var(--padding);
 
-  &::-moz-selection {
+  ::-moz-selection {
     background-color: #777;
   }
   &::selection {
